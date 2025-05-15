@@ -5,7 +5,7 @@ steps:
     args: ['ci']
 
   - name: 'node:22'
-    dir: 'final-todo-app'
+    dir: 'todo-app'
     entrypoint: 'npm'
     args: ['run', 'create-env']
     env:
@@ -13,13 +13,13 @@ steps:
       - 'NEXT_PUBLIC_API_BASE_URL=${_NEXT_PUBLIC_API_BASE_URL}'
 
   - name: 'node:22'
-    dir: 'final-todo-app'
+    dir: 'todo-app'
     entrypoint: 'npm'
     args: ['run', 'build']
 
   - name: 'gcr.io/cloud-builders/gcloud'
     args: ['app', 'deploy', '--quiet']
-    dir: 'final-todo-app'
+    dir: 'todo-app'
 
 timeout: '1600s'
 
